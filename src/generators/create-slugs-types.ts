@@ -1,5 +1,5 @@
-const fs = require("fs");
-const prettier = require("prettier");
+import fs from "fs";
+import prettier from "prettier";
 
 //TODO: change to dynamic path
 const basePath = "/api/contentful";
@@ -7,12 +7,16 @@ const contentEntriesPath = `${basePath}/contentEntries.json`;
 const contentTypesPath = `${basePath}/contentTypes.json`;
 const slugsTSPath = `${basePath}/slugs.ts`;
 
-function createSlugsTypes() {
+export function createSlugsTypes() {
   const locales = JSON.parse(
-    fs.readFileSync(__dirname + basePath + "/locales.json")
+    fs.readFileSync(__dirname + basePath + "/locales.json").toString()
   );
-  const entries = JSON.parse(fs.readFileSync(__dirname + contentEntriesPath));
-  const types = JSON.parse(fs.readFileSync(__dirname + contentTypesPath));
+  const entries = JSON.parse(
+    fs.readFileSync(__dirname + contentEntriesPath).toString()
+  );
+  const types = JSON.parse(
+    fs.readFileSync(__dirname + contentTypesPath).toString()
+  );
   const defaultLocale = locales[0].code;
 
   const slugsTypes = `
@@ -82,7 +86,3 @@ function createSlugsTypes() {
 
   fs.writeFileSync(filepath, prettified);
 }
-
-module.exports = {
-  createSlugsTypes,
-};

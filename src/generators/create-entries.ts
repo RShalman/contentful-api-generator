@@ -1,20 +1,18 @@
-const fs = require("fs");
-const { isArray, isArrOrObj } = require("../utils/commons.js");
+import fs from "node:fs";
+import {isArray, isArrOrObj} from "../utils/commons";
 
 //TODO: change to dynamic path
 const basePath = "/api/contentful";
 const exportFilePath = `${basePath}/data/contentful-export.json`;
 const contentEntriesPath = `${basePath}/contentEntries.json`;
 
-const findById = (arr, id) => arr.find((el) => el.sys.id === id) ?? null;
+export const findById = (arr, id) => arr.find((el) => el.sys.id === id) ?? null;
 
-module.exports.findById = findById;
-
-module.exports = function createEntries() {
+export function createEntries() {
   const { entries, assets } =
-    JSON.parse(fs.readFileSync(__dirname + exportFilePath)) ?? {};
+    JSON.parse(fs.readFileSync(__dirname + exportFilePath).toString()) ?? {};
   const locales = JSON.parse(
-    fs.readFileSync(__dirname + basePath + "/locales.json")
+    fs.readFileSync(__dirname + basePath + "/locales.json").toString()
   );
   const procAssets = assets
     ? JSON.parse(JSON.stringify(assets).replaceAll(/\/\/images/gi, "images"))
@@ -24,7 +22,7 @@ module.exports = function createEntries() {
   const findEntryById = (id) => findById(comparableEntries, id);
 
   const findDeepEntriesRecursively = (id, language) => {
-    const entry = findEntryById(id, comparableEntries);
+    const entry = findEntryById(id);
 
     // Entry may be a DRAFT
     if (!entry) return null;
@@ -117,4 +115,4 @@ module.exports = function createEntries() {
       JSON.stringify(procEntries, null, 2)
     );
   }
-};
+}

@@ -1,17 +1,14 @@
-const fs = require("fs");
-const {
-  createTypesModels,
-  createTypesTS,
-} = require("./create-models-and-types.js");
-const { createEntries } = require("./create-entries.js");
-const { createSlugsTypes } = require("./create-slugs-types.js");
-const { createApi } = require("./create-api.js");
+import fs from "fs";
+import {createTypesModels, createTypesTS} from "./create-models-and-types";
+import {createEntries} from "./create-entries";
+import {createSlugsTypes} from "./create-slugs-types";
+import createApi from "./create-api";
 
 //TODO: dynamic path
 const basePath = "/api/contentful";
 const exportFilePath = `${basePath}/data/contentful-export.json`;
 const contentfulExportFile = JSON.parse(
-  fs.readFileSync(__dirname + exportFilePath)
+  fs.readFileSync(__dirname + exportFilePath).toString()
 );
 
 if (!contentfulExportFile) {
