@@ -1,5 +1,5 @@
-import fs from "node:fs";
-import prettier from "prettier";
+import * as fs from "fs";
+import * as prettier from "prettier";
 import { CAGOptions } from "../../types";
 
 const UpperCasedTypeName = (type) => type.name.replace(/\s/gi, "");

@@ -1,4 +1,4 @@
-import fs from "node:fs";
+import * as fs from "fs";
 import {isArray, isArrOrObj} from "../utils/commons";
 
 //TODO: change to dynamic path

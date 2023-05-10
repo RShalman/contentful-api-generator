@@ -5,20 +5,27 @@ import { createSlugsTypes } from "./create-slugs-types";
 import createApi from "./create-api";
 import { CAGOptions } from "../../types";
 
-export default async function (args: CAGOptions) {
-  const options = {
-    basePath: args.basePath ?? "/api/contentful",
-    contentFile: args.contentFile ?? "contentful-export.json",
-    exportDir: args.exportDir ?? `${options.basePath}/data`,
-    errorLogFile: args.errorLogFile ?? "error.log",
-    downloadAssets: args.downloadAssets ?? true,
-    contentEntriesJSONPath:
-      args.contentEntriesJSONPath ?? `${options.basePath}/contentEntries.json`,
-    contentTypesJSONPath:
-      args.contentTypesJSONPath ?? `${options.basePath}/contentTypes.json`,
-    apiTSPath: args.apiTSPath ?? `${options.basePath}/api.ts`,
-    ...args,
-  };
+function CreateOptions(args: CAGOptions): CAGOptions {
+  this.options = {} as CAGOptions;
+  this.options.basePath = args.basePath ?? "/api/contentful";
+  this.options.contentFile = args.contentFile ?? "contentful-export.json";
+  this.options.exportDir = args.exportDir ?? `${this.options.basePath}/data`;
+  this.options.errorLogFile = args.errorLogFile ?? "error.log";
+  this.options.downloadAssets = args.downloadAssets ?? true;
+  this.options.contentEntriesJSONPath =
+    args.contentEntriesJSONPath ??
+    `${this.options.basePath}/contentEntries.json`;
+  this.options.contentTypesJSONPath =
+    args.contentTypesJSONPath ?? `${this.options.basePath}/contentTypes.json`;
+  this.options.apiTSPath = args.apiTSPath ?? `${this.options.basePath}/api.ts`;
+
+  Object.assign(this.options, args);
+
+  return this.options;
+}
+
+export default async function generateContentfulApi(args: CAGOptions) {
+  const options = CreateOptions(args);
 
   await fetchContentfulSpaceData(options);
   // if (options.downloadAssets) moveAssetsToPublicFolder();
@@ -30,5 +37,5 @@ export default async function (args: CAGOptions) {
   createTypesTS();
   createEntries();
   createSlugsTypes();
-  createApi();
+  createApi(options);
 }

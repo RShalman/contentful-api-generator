@@ -1,5 +1,5 @@
-import fs from "fs";
-import prettier from "prettier";
+import * as fs from "fs";
+import * as prettier from "prettier";
 import { capitalize } from "../utils/commons.js";
 import { findById } from "./create-entries.js";
 

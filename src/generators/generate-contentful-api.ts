@@ -2,7 +2,6 @@ import fs from "fs";
 import {createTypesModels, createTypesTS} from "./create-models-and-types";
 import {createEntries} from "./create-entries";
 import {createSlugsTypes} from "./create-slugs-types";
-import createApi from "./create-api";
 
 //TODO: dynamic path
 const basePath = "/api/contentful";
@@ -24,4 +23,4 @@ createTypesModels();
 createTypesTS();
 createEntries();
 createSlugsTypes();
-createApi();
+// createApi();

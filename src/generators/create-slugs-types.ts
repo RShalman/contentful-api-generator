@@ -1,5 +1,5 @@
-import fs from "fs";
-import prettier from "prettier";
+import * as fs from "fs";
+import * as prettier from "prettier";
 
 //TODO: change to dynamic path
 const basePath = "/api/contentful";

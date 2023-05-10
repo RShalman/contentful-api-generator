@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "A contentful TypeScript API generation tool",
   "type": "module",
-  "main": "index.js",
+  "main": "./dist/cjs.js",
+  "module": "./dist/esm.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -34,6 +36,7 @@
   "devDependencies": {
     "@types/node": "^18.15.11",
     "@types/prettier": "^2.7.2",
+    "esbuild": "^0.17.18",
     "typescript": "^5.0.2"
   }
 }
