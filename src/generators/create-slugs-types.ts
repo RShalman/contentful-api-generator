@@ -1,19 +1,16 @@
 import * as fs from "fs";
-import * as prettier from "prettier";
+import { format } from "prettier";
+import { CAGOptions } from "../../types";
 
-//TODO: change to dynamic path
-const basePath = "/api/contentful";
-const contentEntriesPath = `${basePath}/contentEntries.json`;
-const contentTypesPath = `${basePath}/contentTypes.json`;
-const slugsTSPath = `${basePath}/slugs.ts`;
+export function createSlugsTypes(basePath: CAGOptions["basePath"]) {
+  const contentEntriesPath = `${basePath}/contentEntries.json`;
+  const contentTypesPath = `${basePath}/contentTypes.json`;
+  const slugsTSPath = `${basePath}/slugs.ts`;
 
-export function createSlugsTypes() {
   const locales = JSON.parse(
-    fs.readFileSync(__dirname + basePath + "/locales.json").toString()
+    fs.readFileSync(basePath + "/locales.json").toString()
   );
-  const entries = JSON.parse(
-    fs.readFileSync(__dirname + contentEntriesPath).toString()
-  );
+  const entries = JSON.parse(fs.readFileSync(contentEntriesPath).toString());
   const types = JSON.parse(
     fs.readFileSync(__dirname + contentTypesPath).toString()
   );
@@ -79,10 +76,9 @@ export function createSlugsTypes() {
   };
 
   const filepath = __dirname + slugsTSPath;
-  const prettified = prettier.format(
-    slugsTypes + slugsByTypes + slugsForAssets(),
-    { filepath }
-  );
+  const prettified = format(slugsTypes + slugsByTypes + slugsForAssets(), {
+    filepath,
+  });
 
   fs.writeFileSync(filepath, prettified);
 }

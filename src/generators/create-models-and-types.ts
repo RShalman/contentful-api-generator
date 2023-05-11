@@ -1,14 +1,8 @@
 import * as fs from "fs";
-import * as prettier from "prettier";
+import { format } from "prettier";
 import { capitalize } from "../utils/commons.js";
 import { findById } from "./create-entries.js";
-
-const basePath = "/api/contentful";
-const exportFilePath = `${basePath}/data/contentful-export.json`;
-const typesModelPath = `${basePath}/contentTypes.json`;
-const localesModelPath = `${basePath}/locales.json`;
-const localesTSPath = `${basePath}/locales.ts`;
-const typesTSPath = `${basePath}/contentTypes.ts`;
+import { CAGOptions } from "../../types";
 
 const onError = (err) => {
   throw new Error(`Seems like file is empty or doesnt exist: ${err}`);
@@ -87,9 +81,14 @@ function typesReferenceType(typesModel) {
     `;
 }
 
-export function createTypesModels() {
+export function createTypesModels(basePath: CAGOptions["basePath"]) {
+  const exportFilePath = `${basePath}/data/contentful-export.json`;
+  const typesModelPath = `${basePath}/contentTypes.json`;
+  const localesModelPath = `${basePath}/locales.json`;
+  const localesTSPath = `${basePath}/locales.ts`;
+
   const contentfulExportFile = JSON.parse(
-    fs.readFileSync(__dirname + exportFilePath).toString()
+    fs.readFileSync(exportFilePath).toString()
   );
   const { contentTypes, locales } = contentfulExportFile ?? {};
 
@@ -145,7 +144,10 @@ export function createTypesModels() {
   }
 }
 
-export function createTypesTS() {
+export function createTypesTS(basePath: CAGOptions["basePath"]) {
+  const typesModelPath = `${basePath}/contentTypes.json`;
+  const typesTSPath = `${basePath}/contentTypes.ts`;
+
   const typesModel = JSON.parse(
     fs.readFileSync(__dirname + typesModelPath).toString()
   );
@@ -190,7 +192,7 @@ export function createTypesTS() {
     }, "")}`;
 
     const filepath = __dirname + typesTSPath;
-    const validContent = prettier.format(
+    const validContent = format(
       notification +
         imports +
         assetType +

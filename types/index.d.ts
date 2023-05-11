@@ -1,7 +1,8 @@
 export interface CAGOptions {
   spaceId: string;
   managementToken: string;
-  basePath?: string;
+  basePath: string;
+  assetsPath?: string;
   contentFile?: string;
   exportDir?: string;
   errorLogFile?: string;

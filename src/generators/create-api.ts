@@ -1,15 +1,15 @@
 import * as fs from "fs";
-import * as prettier from "prettier";
+import { format } from "prettier";
 import { CAGOptions } from "../../types";
 
 const UpperCasedTypeName = (type) => type.name.replace(/\s/gi, "");
 
 export default function createApi(options: CAGOptions) {
   const types = JSON.parse(
-    fs.readFileSync(__dirname + options.contentTypesJSONPath).toString()
+    fs.readFileSync(options.contentTypesJSONPath).toString()
   );
   const entries = JSON.parse(
-    fs.readFileSync(__dirname + options.contentEntriesJSONPath).toString()
+    fs.readFileSync(options.contentEntriesJSONPath).toString()
   );
 
   const hasEntriesOfType = (type) =>
@@ -17,12 +17,13 @@ export default function createApi(options: CAGOptions) {
       (entry) => entry.sys?.contentType?.sys?.id === type.contentTypeId
     ).length > 0;
 
-  //TODO: add dynamic routes to imports
   const imports = `
-    import { CContentTypes, CContentTypesKeys, CTEntryOfTypes, CTEntry, Asset } from '@api/contentful/contentTypes';
-    import { CTLocales } from '@api/contentful/locales';
-    import locales from '@api/contentful/locales.json';
-    import entries from '@api/contentful/contentEntries.json';
+    import { CContentTypes, CContentTypesKeys, CTEntryOfTypes, CTEntry, Asset } from '${
+      options.basePath
+    }/contentTypes';
+    import { CTLocales } from '${options.basePath}/locales';
+    import locales from '${options.basePath}/locales.json';
+    import entries from '${options.basePath}/contentEntries.json';
     import { CTSlugs, CTAssetSlug, ${types.reduce(
       (typesAcc, type, idx) =>
         !hasEntriesOfType(type)
@@ -32,7 +33,7 @@ export default function createApi(options: CAGOptions) {
               idx < types.length - 1 ? ", " : ""
             }`,
       ""
-    )} } from '@api/contentful/slugs';
+    )} } from '${options.basePath}/slugs';
   `;
 
   const apiEndpoints = `
@@ -82,7 +83,7 @@ export default function createApi(options: CAGOptions) {
   `;
 
   const filepath = __dirname + options.apiTSPath;
-  const prettified = prettier.format(imports + apiEndpoints, { filepath });
+  const prettified = format(imports + apiEndpoints, { filepath });
 
   fs.writeFileSync(filepath, prettified);
 }

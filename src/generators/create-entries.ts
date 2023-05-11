@@ -1,18 +1,16 @@
 import * as fs from "fs";
-import {isArray, isArrOrObj} from "../utils/commons";
-
-//TODO: change to dynamic path
-const basePath = "/api/contentful";
-const exportFilePath = `${basePath}/data/contentful-export.json`;
-const contentEntriesPath = `${basePath}/contentEntries.json`;
+import { isArray, isArrOrObj } from "../utils/commons";
+import { CAGOptions } from "../../types";
 
 export const findById = (arr, id) => arr.find((el) => el.sys.id === id) ?? null;
 
-export function createEntries() {
+export function createEntries(basePath: CAGOptions["basePath"]) {
+  const exportFilePath = `${basePath}/data/contentful-export.json`;
+  const contentEntriesPath = `${basePath}/contentEntries.json`;
   const { entries, assets } =
-    JSON.parse(fs.readFileSync(__dirname + exportFilePath).toString()) ?? {};
+    JSON.parse(fs.readFileSync(exportFilePath).toString()) ?? {};
   const locales = JSON.parse(
-    fs.readFileSync(__dirname + basePath + "/locales.json").toString()
+    fs.readFileSync(basePath + "/locales.json").toString()
   );
   const procAssets = assets
     ? JSON.parse(JSON.stringify(assets).replaceAll(/\/\/images/gi, "images"))
