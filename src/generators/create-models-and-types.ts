@@ -2,7 +2,7 @@ import * as fs from "fs";
 import { format } from "prettier";
 import { capitalize } from "../utils/commons.js";
 import { findById } from "./create-entries.js";
-import { CAGOptions } from "../../types";
+import { CAGOptions } from "@/types/typings";
 
 const onError = (err) => {
   throw new Error(`Seems like file is empty or doesnt exist: ${err}`);

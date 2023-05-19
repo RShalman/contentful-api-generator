@@ -1,6 +1,6 @@
 import * as fs from "fs";
 import { format } from "prettier";
-import { CAGOptions } from "../../types";
+import { CAGOptions } from "@/types/typings";
 
 const UpperCasedTypeName = (type) => type.name.replace(/\s/gi, "");
 

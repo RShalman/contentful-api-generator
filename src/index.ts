@@ -1,2 +1,12 @@
-export * from "./generators/import-contentful-data";
-export * as default from "./generators/generate-contentful-api";
+import { generateContentfulApi } from "./runners/generate-contentful-api.js";
+
+import {
+  fetchContentfulSpaceData,
+  moveAssetsToPublicFolder,
+} from "./runners/import-contentful-data.js";
+
+export {
+  generateContentfulApi,
+  fetchContentfulSpaceData,
+  moveAssetsToPublicFolder,
+};

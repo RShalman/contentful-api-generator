@@ -1,6 +1,6 @@
 import * as fs from "fs";
 import { format } from "prettier";
-import { CAGOptions } from "../../types";
+import { CAGOptions } from "@/types/typings";
 
 export function createSlugsTypes(basePath: CAGOptions["basePath"]) {
   const contentEntriesPath = `${basePath}/contentEntries.json`;

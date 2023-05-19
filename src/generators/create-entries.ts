@@ -1,6 +1,6 @@
 import * as fs from "fs";
 import { isArray, isArrOrObj } from "../utils/commons";
-import { CAGOptions } from "../../types";
+import { CAGOptions } from "@/types/typings";
 
 export const findById = (arr, id) => arr.find((el) => el.sys.id === id) ?? null;
 
