@@ -4,8 +4,6 @@
     "lib": [
       "es2021"
     ],
-    //    "rootDir": "./src",
-    "module": "commonjs",
     "moduleResolution": "node",
     "types": [
       "node"
@@ -13,8 +11,6 @@
     "allowJs": false,
     "checkJs": false,
     "outDir": "./dist",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
     "noUnusedLocals": true,
     "baseUrl": ".",
     "paths": {
@@ -23,9 +19,6 @@
       ]
     }
   },
-  //  "include": [
-  //    "src/**/*"
-  //  ],
   "exclude": [
     "node_modules",
     "dist"

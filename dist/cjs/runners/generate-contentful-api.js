@@ -1,14 +1,11 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generateContentfulApi = void 0;
 const import_contentful_data_1 = require("./import-contentful-data");
 const create_models_and_types_1 = require("../generators/create-models-and-types");
 const create_entries_1 = require("../generators/create-entries");
 const create_slugs_types_1 = require("../generators/create-slugs-types");
-const create_api_1 = __importDefault(require("../generators/create-api"));
+const create_api_1 = require("../generators/create-api");
 function CreateOptions(args) {
     this.options = {};
     this.options.basePath = args.basePath ?? "/api/contentful";

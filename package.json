@@ -10,7 +10,9 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc -b ./tsconfig.cjs.json ./tsconfig.esm.json ./tsconfig.types.json",
+    "build:types": "dts-bundle-generator -o dist/types/index.d.ts src/index.ts",
+    "build:pkg": "tsc -b ./tsconfig.cjs.json ./tsconfig.esm.json",
+    "bundle": "npm run build:pkg && npm run build:types",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -40,6 +42,7 @@
   "devDependencies": {
     "@types/node": "^18.15.11",
     "@types/prettier": "^2.7.2",
+    "dts-bundle-generator": "^8.0.1",
     "typescript": "^5.0.2"
   }
 }

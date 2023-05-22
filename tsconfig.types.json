@@ -1,8 +1,0 @@
-{
-  "extends": "./tsconfig.json",
-  "compilerOptions": {
-    "outFile": "./dist/types/index.d.ts",
-    "declaration": true,
-    "emitDeclarationOnly": true
-  }
-}
