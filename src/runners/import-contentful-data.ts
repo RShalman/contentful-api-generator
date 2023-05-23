@@ -3,7 +3,9 @@ import { capitalize } from "../utils/commons.js";
 import * as fs from "fs";
 import { CAGOptions } from "@/types/typings";
 
-export async function fetchContentfulSpaceData(options) {
+export async function fetchContentfulSpaceData(
+  options: CAGOptions
+): Promise<void> {
   await contentfulExport(options);
 }
 

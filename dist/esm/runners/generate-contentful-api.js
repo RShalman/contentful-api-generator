@@ -2,7 +2,7 @@ import { fetchContentfulSpaceData, moveAssetsToPublicFolder, } from "./import-co
 import { createTypesModels, createTypesTS, } from "../generators/create-models-and-types.js";
 import { createSlugsTypes } from "../generators/create-slugs-types.js";
 import createApi from "../generators/create-api.js";
-import { createEntries } from "@/src/generators/create-entries.js";
+import { createEntries } from "../generators/create-entries.js";
 function CreateOptions(args) {
     this.options = {};
     this.options.basePath = args.basePath ?? "/api/contentful";

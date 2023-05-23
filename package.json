@@ -4,14 +4,17 @@
   "description": "A contentful TypeScript API generation tool",
   "type": "module",
   "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.js",
+  "exports": {
+    "require": "./dist/cjs/index.js",
+    "import": "./dist/esm/index.js"
+  },
   "types": "./dist/types/index.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
     "build:types": "dts-bundle-generator -o dist/types/index.d.ts src/index.ts",
-    "build:pkg": "tsc -b ./tsconfig.cjs.json ./tsconfig.esm.json",
+    "build:pkg": "make cjs && make esm",
     "bundle": "npm run build:pkg && npm run build:types",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

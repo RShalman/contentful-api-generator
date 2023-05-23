@@ -14,7 +14,7 @@ export declare interface CAGOptions {
 	apiTSPath?: string;
 }
 export declare function generateContentfulApi(args: CAGOptions): Promise<void>;
-export declare function fetchContentfulSpaceData(options: any): Promise<void>;
+export declare function fetchContentfulSpaceData(options: CAGOptions): Promise<void>;
 export declare function moveAssetsToPublicFolder(options: CAGOptions): void;
 
 export {};

@@ -5,7 +5,7 @@ const import_contentful_data_js_1 = require("./import-contentful-data.js");
 const create_models_and_types_js_1 = require("../generators/create-models-and-types.js");
 const create_slugs_types_js_1 = require("../generators/create-slugs-types.js");
 const create_api_js_1 = require("../generators/create-api.js");
-const create_entries_js_1 = require("@/src/generators/create-entries.js");
+const create_entries_js_1 = require("../generators/create-entries.js");
 function CreateOptions(args) {
     this.options = {};
     this.options.basePath = args.basePath ?? "/api/contentful";

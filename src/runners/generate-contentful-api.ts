@@ -9,7 +9,7 @@ import {
 import { createSlugsTypes } from "../generators/create-slugs-types.js";
 import createApi from "../generators/create-api.js";
 import { CAGOptions } from "@/types/typings";
-import { createEntries } from "@/src/generators/create-entries.js";
+import { createEntries } from "../generators/create-entries.js";
 
 function CreateOptions(args: CAGOptions): CAGOptions {
   this.options = {} as CAGOptions;
