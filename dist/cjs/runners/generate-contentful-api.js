@@ -1,11 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generateContentfulApi = void 0;
-const import_contentful_data_1 = require("./import-contentful-data");
-const create_models_and_types_1 = require("../generators/create-models-and-types");
-const create_entries_1 = require("../generators/create-entries");
-const create_slugs_types_1 = require("../generators/create-slugs-types");
-const create_api_1 = require("../generators/create-api");
+const import_contentful_data_js_1 = require("./import-contentful-data.js");
+const create_models_and_types_js_1 = require("../generators/create-models-and-types.js");
+const create_slugs_types_js_1 = require("../generators/create-slugs-types.js");
+const create_api_js_1 = require("../generators/create-api.js");
+const create_entries_js_1 = require("@/src/generators/create-entries.js");
 function CreateOptions(args) {
     this.options = {};
     this.options.basePath = args.basePath ?? "/api/contentful";
@@ -24,15 +24,15 @@ function CreateOptions(args) {
 }
 async function generateContentfulApi(args) {
     const options = CreateOptions(args);
-    await (0, import_contentful_data_1.fetchContentfulSpaceData)(options);
+    await (0, import_contentful_data_js_1.fetchContentfulSpaceData)(options);
     if (options.downloadAssets)
-        (0, import_contentful_data_1.moveAssetsToPublicFolder)(options);
+        (0, import_contentful_data_js_1.moveAssetsToPublicFolder)(options);
     // Entrypoint for all generators in a certain order
     // Import made separately
-    (0, create_models_and_types_1.createTypesModels)(options.basePath);
-    (0, create_models_and_types_1.createTypesTS)(options.basePath);
-    (0, create_entries_1.createEntries)(options.basePath);
-    (0, create_slugs_types_1.createSlugsTypes)(options.basePath);
-    (0, create_api_1.default)(options);
+    (0, create_models_and_types_js_1.createTypesModels)(options.basePath);
+    (0, create_models_and_types_js_1.createTypesTS)(options.basePath);
+    (0, create_entries_js_1.createEntries)(options.basePath);
+    (0, create_slugs_types_js_1.createSlugsTypes)(options.basePath);
+    (0, create_api_js_1.default)(options);
 }
 exports.generateContentfulApi = generateContentfulApi;

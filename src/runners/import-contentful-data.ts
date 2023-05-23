@@ -1,5 +1,5 @@
 import contentfulExport from "contentful-export";
-import { capitalize } from "../utils/commons";
+import { capitalize } from "../utils/commons.js";
 import * as fs from "fs";
 import { CAGOptions } from "@/types/typings";
 

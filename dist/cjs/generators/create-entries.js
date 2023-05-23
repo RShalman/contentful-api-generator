@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createEntries = exports.findById = void 0;
 const fs = require("fs");
-const commons_1 = require("../utils/commons");
+const commons_js_1 = require("../utils/commons.js");
 const findById = (arr, id) => arr.find((el) => el.sys.id === id) ?? null;
 exports.findById = findById;
 function createEntries(basePath) {
@@ -27,9 +27,9 @@ function createEntries(basePath) {
                 const fieldItem = entry.fields[key];
                 return {
                     ...entriesAcc,
-                    [key]: !fieldItem[language].sys && !(0, commons_1.isArray)(fieldItem[language])
+                    [key]: !fieldItem[language].sys && !(0, commons_js_1.isArray)(fieldItem[language])
                         ? fieldItem
-                        : (0, commons_1.isArray)(fieldItem[language])
+                        : (0, commons_js_1.isArray)(fieldItem[language])
                             ? fieldItem[language].map((item) => item.sys
                                 ? findDeepEntriesRecursively(item.sys.id, language)?.fields
                                 : item)
@@ -43,8 +43,8 @@ function createEntries(basePath) {
     };
     const fieldEntryLinkToExactData = (fieldItem, withFields = false, language) => {
         let fieldData = fieldItem;
-        if ((0, commons_1.isArrOrObj)(fieldItem)) {
-            if ((0, commons_1.isArray)(fieldItem)) {
+        if ((0, commons_js_1.isArrOrObj)(fieldItem)) {
+            if ((0, commons_js_1.isArray)(fieldItem)) {
                 fieldData = fieldItem
                     .map((item) => {
                     const { sys } = item;

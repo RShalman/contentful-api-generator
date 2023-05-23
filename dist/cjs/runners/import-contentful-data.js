@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.moveAssetsToPublicFolder = exports.fetchContentfulSpaceData = void 0;
 const contentful_export_1 = require("contentful-export");
-const commons_1 = require("../utils/commons");
+const commons_js_1 = require("../utils/commons.js");
 const fs = require("fs");
 async function fetchContentfulSpaceData(options) {
     await (0, contentful_export_1.default)(options);
@@ -34,10 +34,10 @@ function moveAssetsToPublicFolder(options) {
         }
         fs.rename(__dirname + `${options.basePath}/data/${asset.name}.ctfassets.net`, asset.path, (err) => {
             if (err) {
-                console.error(`${(0, commons_1.capitalize)(asset.name)}: ${err}`);
+                console.error(`${(0, commons_js_1.capitalize)(asset.name)}: ${err}`);
             }
             else {
-                console.log("\x1b[32m", `SUCCESS! ${(0, commons_1.capitalize)(asset.name)} moved to public/contentful folder!`);
+                console.log("\x1b[32m", `SUCCESS! ${(0, commons_js_1.capitalize)(asset.name)} moved to public/contentful folder!`);
             }
         });
     });

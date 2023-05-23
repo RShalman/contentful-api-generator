@@ -1,15 +1,15 @@
 import {
   fetchContentfulSpaceData,
   moveAssetsToPublicFolder,
-} from "./import-contentful-data";
+} from "./import-contentful-data.js";
 import {
   createTypesModels,
   createTypesTS,
-} from "../generators/create-models-and-types";
-import { createEntries } from "../generators/create-entries";
-import { createSlugsTypes } from "../generators/create-slugs-types";
-import createApi from "../generators/create-api";
+} from "../generators/create-models-and-types.js";
+import { createSlugsTypes } from "../generators/create-slugs-types.js";
+import createApi from "../generators/create-api.js";
 import { CAGOptions } from "@/types/typings";
+import { createEntries } from "@/src/generators/create-entries.js";
 
 function CreateOptions(args: CAGOptions): CAGOptions {
   this.options = {} as CAGOptions;

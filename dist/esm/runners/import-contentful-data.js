@@ -1,5 +1,5 @@
 import contentfulExport from "contentful-export";
-import { capitalize } from "../utils/commons";
+import { capitalize } from "../utils/commons.js";
 import * as fs from "fs";
 export async function fetchContentfulSpaceData(options) {
     await contentfulExport(options);

@@ -1,5 +1,5 @@
 import * as fs from "fs";
-import { isArray, isArrOrObj } from "../utils/commons";
+import { isArray, isArrOrObj } from "../utils/commons.js";
 export const findById = (arr, id) => arr.find((el) => el.sys.id === id) ?? null;
 export function createEntries(basePath) {
     const exportFilePath = `${basePath}/data/contentful-export.json`;
