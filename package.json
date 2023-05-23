@@ -1,7 +1,7 @@
 {
   "name": "contentful-api-generator",
   "version": "1.0.0",
-  "description": "A contentful TypeScript API generation tool",
+  "description": "A Contentful TypeScript API generation tool",
   "type": "module",
   "main": "./dist/cjs/index.js",
   "exports": {

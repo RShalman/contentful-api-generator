@@ -95,6 +95,10 @@ The structure of the output files is following (within the default folder or the
 - **data/contentful-export.json** - the initial export file from contentful (can be deleted after api is generated)
 - **your-path/contentful/(images | assets | downloads).ctfassets.net** - folders with assets
 
+### TO BE DONE
+
+- CLI interface
+
 ### Issues & Contributions
 
 [Issues can be raised here](https://github.com/RShalman/contentful-api-generator/issues)
